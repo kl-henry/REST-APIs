@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>dlgRecipeDB</class>
+ <widget class="QDialog" name="dlgRecipeDB">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>785</width>
+    <height>538</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Rezepte Datenbank</string>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>490</y>
+     <width>341</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbSuchen">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>197</y>
+     <width>88</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Suchen</string>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="gbSuchen">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>10</y>
+     <width>331</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Suchen</string>
+   </property>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>308</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="lbIngredient">
+       <property name="text">
+        <string>Zutat:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="leIngredient"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="lbCuisine">
+       <property name="text">
+        <string>Küche:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="cbCuisine">
+       <item>
+        <property name="text">
+         <string/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>African</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>American</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>British</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Cajun</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Caribbean</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Chinese</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Eastern European</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>European</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>French</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>German</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Greek</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Indian</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Irish</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Italian</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Japanese</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Jewish</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Korean</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Latin American</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Mediterranean</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Mexican</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Middle Eastern</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Nordic</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Southern</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Spanish</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Thai</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Vietnamese</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="lbType">
+       <property name="text">
+        <string>Rezept für:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QComboBox" name="cbType">
+       <item>
+        <property name="text">
+         <string/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>main course</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>side dish</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>dessert</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>appetizer</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>salad</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>bread</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>breakfast</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>soup</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>beverage</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>sauce</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>marinade</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>fingerfood</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>snack</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>drink</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="lbReadyTime">
+       <property name="text">
+        <string>Zubereitungszeit:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QSpinBox" name="spReadyTime">
+         <property name="maximum">
+          <number>120</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbMin">
+         <property name="text">
+          <string>Minuten</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QTableWidget" name="twRecipes">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>250</y>
+     <width>721</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="columnCount">
+    <number>2</number>
+   </property>
+   <column/>
+   <column/>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>10</y>
+     <width>381</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="lbQueryString">
+      <property name="text">
+       <string>Abfrage:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="teQueryString">
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="pbDetail">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>490</y>
+     <width>88</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Anzeigen</string>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>cbCuisine</tabstop>
+  <tabstop>cbType</tabstop>
+  <tabstop>spReadyTime</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>dlgRecipeDB</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>dlgRecipeDB</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
