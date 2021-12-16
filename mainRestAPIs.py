@@ -7,6 +7,7 @@ from dialogAstros import dlgWinAstros
 from dialogBored import dlgWinBored
 from dialogColors import dlgWinColors
 from dialogEpic import dlgWinEpic
+from dialogLandsat import dlgWinLandsat
 from dialogLyrics import dlgWinLyrics
 from dialogMarsRoverPictures import dlgWinMarsRoverPictures
 from dialogRecipeDB import dlgWinRecipeDB
@@ -38,6 +39,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionNasaEpic.triggered.connect(self.get_Epic)
         self.actionMarsRoverPictures.triggered.connect(self.get_mars_rover_pictures)
         self.actionRecipeDB.triggered.connect(self.get_RecipeDB)
+        self.actionLandsat.triggered.connect(self.get_LandsatImage)
         self.show()
 
     def get_XKCD(self):
@@ -107,4 +109,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def get_RecipeDB(self):
         # print("MainWindow: get_MovieDB")
         dlgWin = dlgWinRecipeDB()
+        result = dlgWin.exec_()
+
+    def get_LandsatImage(self):
+        print("MainWindow: get_LandsatImage")
+        dlgWin = dlgWinLandsat()
         result = dlgWin.exec_()

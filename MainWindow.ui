@@ -19,7 +19,7 @@
      <rect>
       <x>40</x>
       <y>20</y>
-      <width>371</width>
+      <width>401</width>
       <height>121</height>
      </rect>
     </property>
@@ -142,6 +142,35 @@
      <property name="icon">
       <iconset>
        <normaloff>../../../Bilder/Icons/icons8-mars-60.png</normaloff>../../../Bilder/Icons/icons8-mars-60.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pbLandsat">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>40</y>
+       <width>51</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Get Landsat Images</string>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icons8-satellite-im-orbit-80.png</normaloff>icons8-satellite-im-orbit-80.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>51</width>
+       <height>51</height>
+      </size>
      </property>
     </widget>
    </widget>
@@ -431,6 +460,14 @@
     <string>Rezepte suchen</string>
    </property>
   </action>
+  <action name="actionLandsat">
+   <property name="text">
+    <string>Landsat</string>
+   </property>
+   <property name="toolTip">
+    <string>Get Landsat Imagery</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections>
@@ -619,6 +656,22 @@
     <hint type="sourcelabel">
      <x>295</x>
      <y>405</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbLandsat</sender>
+   <signal>clicked()</signal>
+   <receiver>actionLandsat</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>385</x>
+     <y>115</y>
     </hint>
     <hint type="destinationlabel">
      <x>-1</x>

@@ -122,11 +122,11 @@ class dlgWinSonne(QDialog, Ui_dlgSonne):
         uniqueValues = sorted(uniqueValues)
         fday_list = []
         for value in uniqueValues:
-            # print(value.strftime("%a_%d_%b_%Y_%H:%M:%S"))
+            print(value.strftime("%a_%d_%b_%Y_%H:%M:%S"))
             fday = fnmatch.filter(os.listdir('weather_data_history'),
                                   self.cbStandort.currentText() + "_" +
                                   value.strftime("%a_%d_%b_%Y") + '*')
-            # print("dlgWinSonne:fday ", fday)
+            print("dlgWinSonne:fday ", fday)
             fday_list.append(fday[0])
         # print("dlgWinSonne:fday_list ", fday_list)
         max_temp = []
