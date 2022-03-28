@@ -27,7 +27,7 @@ class dlgWinSonne(QDialog, Ui_dlgSonne):
         # print("dlgWinSonne get_oldest_recent_dates:max(list) ", max(flist))
         daten = {}
         for fname in flist:
-            dat = re.split('(\d{2}_[A-z]{3}_\d{4}_\d{2}:\d{2}:\d{2})', fname, 1)
+            dat = re.split('(\d{2}_[A-zä]{3}_\d{4}_\d{2}:\d{2}:\d{2})', fname, 1)
             # print("dlgWinSonne:dat ", dat)
             datumZeit = DT.datetime.strptime(dat[1], '%d_%b_%Y_%H:%M:%S')
             daten[fname] = datumZeit
@@ -61,16 +61,19 @@ class dlgWinSonne(QDialog, Ui_dlgSonne):
         sunrise_day = []
         sunset_time = []
         sunset_day = []
-        for fname in fday_list:
-            weatherdata = weather_utilities.getWeatherDataFromFile(fname)
-            stime, sday = weather_utilities.getSonnenaufgangShort(weatherdata)
-            sunrise_time.append(stime)
-            sunrise_day.append(sday)
-            stime, sday = weather_utilities.getSonnenuntergangShort(weatherdata)
-            sunset_time.append(stime)
-            sunset_day.append(sday)
+        # for fname in fday_list:
+        #     weatherdata = weather_utilities.getWeatherDataFromFile(fname)
+        #     stime, sday = weather_utilities.getSonnenaufgangShort(weatherdata)
+        #     sunrise_time.append(stime)
+        #     sunrise_day.append(sday)
+        #     stime, sday = weather_utilities.getSonnenuntergangShort(weatherdata)
+        #     sunset_time.append(stime)
+        #     sunset_day.append(sday)
         # print("dlgWinSonne:sunrise ", sunrise_time, type(sunrise_time[0]))
-
+        curr_date, sunrise_day, sunrise_time, sunset_day, sunset_time = weather_utilities.get_sun_data_from_db()
+        # print("dlgWinSonne:sunrise ", sunrise_day)
+        # print("dlgWinSonne:sunrise ", sunrise_time)
+        # print("dlgWinSonne:sunset ", sunset_time)
         x_rise = [DT.datetime.strptime(date, "%Y-%m-%d") for date in sunrise_day]
         y_rise = [DT.datetime.strptime(time, "%H:%M:%S") for time in sunrise_time]
         x_set = [DT.datetime.strptime(date, "%Y-%m-%d") for date in sunset_day]
@@ -116,34 +119,34 @@ class dlgWinSonne(QDialog, Ui_dlgSonne):
 
     def show_Min_Max_Temperaturen_graph(self):
         # print("Enter show_Min_Max_Temperaturen_graph")
-        uniqueValues = set(self.sorted_datum.values())
-        date_set = [x.date() for x in uniqueValues]
-        uniqueValues = set(date_set)
-        uniqueValues = sorted(uniqueValues)
-        fday_list = []
-        for value in uniqueValues:
-            print(value.strftime("%a_%d_%b_%Y_%H:%M:%S"))
-            fday = fnmatch.filter(os.listdir('weather_data_history'),
-                                  self.cbStandort.currentText() + "_" +
-                                  value.strftime("%a_%d_%b_%Y") + '*')
-            print("dlgWinSonne:fday ", fday)
-            fday_list.append(fday[0])
-        # print("dlgWinSonne:fday_list ", fday_list)
-        max_temp = []
-        min_temp = []
-        curr_date = []
-        for fname in fday_list:
-            weatherdata = weather_utilities.getWeatherDataFromFile(fname)
-            temperature = weather_utilities.get_max_Temperature(weatherdata)
-            max_temp.append(temperature)
-            temperature = weather_utilities.get_min_Temperature(weatherdata)
-            min_temp.append(temperature)
-            dat = weather_utilities.getAktuellesDatum(weatherdata)
-            curr_date.append(dat)
-        # print("dlgWinSonne: max_temp ", max_temp)
-        # print("dlgWinSonne: min_temp ", min_temp)
-        # print("dlgWinSonne: curr_date ", curr_date)
-
+        # uniqueValues = set(self.sorted_datum.values())
+        # date_set = [x.date() for x in uniqueValues]
+        # uniqueValues = set(date_set)
+        # uniqueValues = sorted(uniqueValues)
+        # fday_list = []
+        # for value in uniqueValues:
+        #     print(value.strftime("%a_%d_%b_%Y_%H:%M:%S"))
+        #     fday = fnmatch.filter(os.listdir('weather_data_history'),
+        #                           self.cbStandort.currentText() + "_" +
+        #                           value.strftime("%a_%d_%b_%Y") + '*')
+        #     print("dlgWinSonne:fday ", fday)
+        #     fday_list.append(fday[0])
+        # # print("dlgWinSonne:fday_list ", fday_list)
+        # max_temp = []
+        # min_temp = []
+        # curr_date = []
+        # for fname in fday_list:
+        #     weatherdata = weather_utilities.getWeatherDataFromFile(fname)
+        #     temperature = weather_utilities.get_max_Temperature(weatherdata)
+        #     max_temp.append(temperature)
+        #     temperature = weather_utilities.get_min_Temperature(weatherdata)
+        #     min_temp.append(temperature)
+        #     dat = weather_utilities.getAktuellesDatum(weatherdata)
+        #     curr_date.append(dat)
+        curr_date, max_temp, min_temp = weather_utilities.get_weather_data_from_db()
+        # print("dlgWinSonne: max_temp_db ", max_temp)
+        # print("dlgWinSonne: min_temp_db ", min_temp)
+        # print("dlgWinSonne: curr_date_db ", curr_date)
         fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(16,9))
         fig.suptitle('Min./Max Temperatur: ' + self.cbStandort.currentText())
         fig.supxlabel('Datum')

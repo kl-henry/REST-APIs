@@ -21,7 +21,7 @@ class dlgWinWetter(QDialog, Ui_dlgWetter):
         super(dlgWinWetter, self).__init__()
         self.setupUi(self)
         self.weatherData = ""
-        self.ort = ""
+        self.ort = "Winnweiler"
 
         self.action_Speichern.triggered.connect(self.daten_speichern)
         self.action_Standort.triggered.connect(self.auswahl_standort)
@@ -66,11 +66,13 @@ class dlgWinWetter(QDialog, Ui_dlgWetter):
         self.weatherData = weatherData
 
     def daten_speichern(self):
-        # print("Daten Speichern gewählt")
-        fname = weather_utilities.buildSaveFileName(self.weatherData, self.lbOrtDisplay.text()) + ".json"
-        # print(fname)
-        with open(fname, 'w') as json_file:
-            json.dump(self.weatherData, json_file)
+        print("Daten Speichern gewählt: ", self.ort)
+        # fname = weather_utilities.buildSaveFileName(self.weatherData, self.lbOrtDisplay.text()) + ".json"
+        # # print(fname)
+        # with open(fname, 'w') as json_file:
+        #     json.dump(self.weatherData, json_file)
+
+        weather_utilities.save_weather_data_to_db(self.weatherData, self.ort)
 
     def auswahl_standort(self):
         dlgWin = dlgWinStandort()
@@ -93,7 +95,6 @@ class dlgWinWetter(QDialog, Ui_dlgWetter):
         self.statusbar.showMessage("Daten werden aktualisiert...")
         self.getLiveData(self.lbOrtDisplay.text())
         self.populate_Labels()
-        self.statusbar.clearMessage()
 
     def select_Sonnendaten(self):
         # print("Enter select_Sonnendaten")
@@ -107,11 +108,11 @@ class dlgWinWetter(QDialog, Ui_dlgWetter):
             print("Kein Graph ausgewählt", result)
 
     def select_Min_Max_Temperaturen(self):
-        # print("Enter select_Min_Max_Temperaturen")
+        print("Enter select_Min_Max_Temperaturen")
         dlgWin = dlgWinSonne()
         result = dlgWin.exec_()
         if result:
-            # print("select_Min_Max_Temperaturen", result)
+            print("select_Min_Max_Temperaturen", result)
             dlgWin.get_oldest_recent_dates()
             dlgWin.show_Min_Max_Temperaturen_graph()
         else:
