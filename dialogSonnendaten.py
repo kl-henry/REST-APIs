@@ -22,25 +22,26 @@ class dlgWinSonne(QDialog, Ui_dlgSonne):
         self.deVonDat.setDate(self.datum)
 
     def get_oldest_recent_dates(self):
-        flist = fnmatch.filter(os.listdir('weather_data_history'), self.cbStandort.currentText() + '*')
-        # print("dlgWinSonne get_oldest_recent_dates: ", flist, type(flist))
-        # print("dlgWinSonne get_oldest_recent_dates:max(list) ", max(flist))
-        daten = {}
-        for fname in flist:
-            dat = re.split('(\d{2}_[A-zä]{3}_\d{4}_\d{2}:\d{2}:\d{2})', fname, 1)
-            # print("dlgWinSonne:dat ", dat)
-            datumZeit = DT.datetime.strptime(dat[1], '%d_%b_%Y_%H:%M:%S')
-            daten[fname] = datumZeit
+        # flist = fnmatch.filter(os.listdir('weather_data_history'), self.cbStandort.currentText() + '*')
+        # # print("dlgWinSonne get_oldest_recent_dates: ", flist, type(flist))
+        # # print("dlgWinSonne get_oldest_recent_dates:max(list) ", max(flist))
+        # daten = {}
+        # for fname in flist:
+        #     dat = re.split('(\d{2}_[A-zä]{3}_\d{4}_\d{2}:\d{2}:\d{2})', fname, 1)
+        #     # print("dlgWinSonne:dat ", dat)
+        #     datumZeit = DT.datetime.strptime(dat[1], '%d_%b_%Y_%H:%M:%S')
+        #     daten[fname] = datumZeit
         # print("dlgWinSonne:dat ", daten)
-        self.sorted_datum = dict(sorted(daten.items(), key=lambda item: item[1], reverse=True))
+        # self.sorted_datum = dict(sorted(daten.items(), key=lambda item: item[1], reverse=True))
         # print("dlgWinSonne:sorted_datum ", self.sorted_datum)
-        values_view = self.sorted_datum.values()
-        value_iterator = iter(values_view)
-        last_value = next(value_iterator)
-        first_value = list(self.sorted_datum.keys())[-1]
-        self.datum = self.sorted_datum[first_value]
-        self.deBisDat.setDate(last_value)
-        # print(str(self.datum) + "-" + str(self.sorted_datum[first_value]))
+        # values_view = self.sorted_datum.values()
+        # value_iterator = iter(values_view)
+        # last_value = next(value_iterator)
+        # first_value = list(self.sorted_datum.keys())[-1]
+        min_datum, max_datum = weather_utilities.get_min_max_datum_from_db()
+        self.datum = DT.datetime.strptime(min_datum, "%d.%m.%Y")  # ältestes Datum
+        self.deBisDat.setDate(DT.datetime.strptime(max_datum, "%d.%m.%Y"))  # neuestes Datum
+        print("dlgWinSonne get_oldest_recent_dates: " + str(self.datum) + "-" + str(max_datum))
 
     def show_Sonnendaten_graph(self):
         # print("Enter show_graph")
@@ -147,7 +148,7 @@ class dlgWinSonne(QDialog, Ui_dlgSonne):
         # print("dlgWinSonne: max_temp_db ", max_temp)
         # print("dlgWinSonne: min_temp_db ", min_temp)
         # print("dlgWinSonne: curr_date_db ", curr_date)
-        fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(16,9))
+        fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(16, 9))
         fig.suptitle('Min./Max Temperatur: ' + self.cbStandort.currentText())
         fig.supxlabel('Datum')
         fig.supylabel('Temperatur °C')

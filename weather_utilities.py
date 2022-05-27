@@ -186,7 +186,7 @@ def get_weather_data_from_db(id_ort="Winnweiler"):
     return ret_datum, ret_temp_max, ret_temp_min
 
 
-def get_sun_data_from_db(id_ort = "Winnweiler"):
+def get_sun_data_from_db(id_ort="Winnweiler"):
     """
 
     :rtype: object
@@ -255,3 +255,26 @@ def save_weather_data_to_db(weatherData, id_ort="Winnweiler"):
     print("save_weather_data_to_db args: ", args, cur.lastrowid)
     _conn.commit()
     _conn.close()
+
+
+def get_min_max_datum_from_db():
+    """
+
+    :rtype: object
+    """
+    _conn = None
+    sql_select_string = f"select MinDatum, MaxDatum from Get_Min_Max_Datum;"
+    connection_string = "weather_data_history/AstroData.db"
+    try:
+        _conn = sqlite3.connect(connection_string)
+    except Exception as e:
+        print("Error: Sqlite connection not available.\n\t%s" % e)
+    cur = _conn.cursor()
+    cur.execute(sql_select_string)
+    rows = cur.fetchall()
+    _conn.close()
+    print("get_min_max_datum_from_db: ", rows, type(rows))
+    row = rows[0]
+    ret_min_datum = row[0]
+    ret_max_datum = row[1]
+    return ret_min_datum, ret_max_datum

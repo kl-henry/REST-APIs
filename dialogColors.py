@@ -152,7 +152,6 @@ class dlgWinColors(QDialog, Ui_dlgColors):
             # print(type(item), item)
             # print(self.def_color_labels[item][1])
             lbText = self.def_color_labels_rgb[item][1]
-            # TODO ergänze ALPHA Varianten
             dict_to_use[item][0].setText(
                 lbText + ": " + response[dict_to_use[item][1]]["keyword"] + " "
                 + response[dict_to_use[item][1]][dict_to_use[item][2]]["value"])
